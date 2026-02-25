@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { ImageBlock, parseProps, Block } from "codehike/blocks";
-import Image from "next/image";
+
+import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 
 const HeaderSchema = Block.extend({
   preview: ImageBlock.optional(),
@@ -30,12 +31,25 @@ export function Header(props: unknown) {
             <Image
               src={data.preview.url}
               alt={data.preview.alt || "Header preview"}
-              fill
-              className="object-cover"
             />
           </div>
         </div>
       )}
     </header>
+  );
+}
+
+async function Image({ src, alt }: { src: string; alt: string }) {
+  const isGithubActions = process.env.NEXT_PUBLIC_GITHUB_ACTIONS === "true";
+  const basePath = isGithubActions ? "/Next-Docs" : "";
+  const fullSrc = src.startsWith("/") ? `${basePath}${src}` : src;
+  return (
+    <ImageZoom
+      width="500"
+      height="300"
+      className="w-full"
+      src={fullSrc}
+      alt={alt}
+    />
   );
 }
