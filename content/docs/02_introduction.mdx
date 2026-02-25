@@ -1,0 +1,52 @@
+---
+title: Introduction  
+description: Rev Control Hub Basics
+full: true
+banner: /controlhub.png
+---
+
+import { Scrollycoding } from "@/components/scrollycoding"
+import {Header} from "@/components/header"
+
+<Header>
+Welcome to the Rev Control Hub Basics! This guide will help you understand the basics of using the Rev Control Hub.
+
+![!preview Control Hub](/controlhub.png "Control Hub")
+</Header>
+
+
+<Scrollycoding>
+
+## !!steps The Control Hub
+
+This diagram is like a map of your robot's entire nervous system. Right in the middle is the 
+**Control Hub**—this is the "brain" of your robot where all of your code lives. 
+
+To make a robot work, the brain needs to talk to three main things: its power, its muscles, and its senses. Here is how everything connects:
+
+![!preview Wiring Diagram](/Control_Hub_Wiring_Reference_Sheet.webp "Reference Sheet")
+
+## !!steps The Power 
+Your robot needs energy! The **Battery** plugs into the Control Hub through a **Switch**, which acts as a safety gate so you can quickly turn your robot on and off.
+
+![!preview Wiring Diagram](/Control_Hub_Wiring_Reference_Sheet_Power.png "Reference Sheet")
+
+## !!steps The Muscle
+**Motors:** The big cylinder parts (like the HD Hex Motor) are your heavy lifters for driving wheels. They use two wires: a thick "Power" wire to spin, and a smaller "Encoder" wire that acts like a pedometer to tell the brain exactly how many times the motor turned.
+
+**Servos:** The small square box is a Servo. Think of this as a wrist. It doesn't spin fast, but it moves to exact angles to open and close claws.
+
+![!preview Wiring Diagram](/Control_Hub_Wiring_Reference_Sheet_Motor.png "Reference Sheet")
+
+## !!steps The Senses
+This is how your robot feels and sees the world! 
+
+**I2C Ports:** For smart sensors, like the **Color Sensor** (to see game pieces) and the **Distance Sensor** (to measure walls).
+
+**Digital Ports:** For simple "Yes or No" sensors, like a **Touch Sensor** or **Magnetic Switch**.
+
+**Analog Ports:** For reading ranges, like a **Potentiometer**, which acts like a volume dial to tell the brain what angle it is pointing at.
+
+![!preview Wiring Diagram](/Control_Hub_Wiring_Reference_Sheet_Sensors.png "Reference Sheet")
+
+</Scrollycoding>
