@@ -2,6 +2,8 @@ import { createMDX } from "fumadocs-mdx/next";
 
 const withMDX = createMDX();
 
+const isGithubActions = process.env.GITHUB_ACTIONS === "true";
+
 /** @type {import('next').NextConfig} */
 const config = {
   reactStrictMode: true,
@@ -9,6 +11,8 @@ const config = {
   images: {
     unoptimized: true,
   },
+  basePath: isGithubActions ? "/Next-Docs" : "",
+  trailingSlash: isGithubActions ? true : false,
 };
 
 export default withMDX(config);

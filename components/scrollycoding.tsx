@@ -75,12 +75,15 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
 }
 
 async function Image({ src, alt }: { src: string; alt: string }) {
+  const isGithubActions = process.env.NEXT_PUBLIC_GITHUB_ACTIONS === "true";
+  const basePath = isGithubActions ? "/Next-Docs" : "";
+  const fullSrc = src.startsWith("/") ? `${basePath}${src}` : src;
   return (
     <ImageZoom
-      width="100"
-      height="100"
+      width="500"
+      height="300"
       className="w-full"
-      src={src}
+      src={fullSrc}
       alt={alt}
     />
   );

@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { ImageBlock, parseProps, Block } from "codehike/blocks";
+import Image from "next/image";
 
 const HeaderSchema = Block.extend({
   preview: ImageBlock.optional(),
@@ -25,11 +26,12 @@ export function Header(props: unknown) {
       {/* Right Side: Image Preview */}
       {data.preview && (
         <div className="flex-1 w-full max-w-lg shrink-0">
-          <div className="rounded-2xl overflow-hidden flex items-center justify-center">
-            <img
+          <div className="rounded-2xl overflow-hidden flex items-center justify-center relative aspect-video">
+            <Image
               src={data.preview.url}
               alt={data.preview.alt || "Header preview"}
-              className="w-full h-auto object-cover"
+              fill
+              className="object-cover"
             />
           </div>
         </div>

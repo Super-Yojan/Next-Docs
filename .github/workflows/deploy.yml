@@ -44,6 +44,8 @@ jobs:
         run: npm ci
       - name: Build with Next.js
         run: npx next build
+        env:
+          NEXT_PUBLIC_GITHUB_ACTIONS: "true"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
