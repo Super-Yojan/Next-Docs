@@ -12,7 +12,6 @@ import { wordWrap } from "./annotations/word-wrap";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 
 const Schema = Block.extend({
-  // preview: ImageBlock.optional(),
   steps: z.array(
     Block.extend({
       code: CodeBlock.optional(),
@@ -24,39 +23,43 @@ const Schema = Block.extend({
 export function Scrollycoding(props: unknown) {
   const { steps } = parseProps(props, Schema);
   return (
-    <SelectionProvider className="flex gap-4">
-      <div className="flex-1 mt-32 mb-[9vh] ml-2 prose min-w-60">
+    <SelectionProvider className="flex gap-6">
+      {/* Steps on the left */}
+      <div className="w-[380px] shrink-0 mt-8 mb-[90vh]">
         {steps.map((step, i) => (
           <Selectable
             key={i}
             index={i}
             selectOn={["click", "scroll"]}
-            className="border-l-4 data-[selected=true]:border-blue-400 px-5 py-2 mb-24 rounded bg-card"
+            className="swiftui-step"
           >
-            <h2 className="mt-4 text-xl">{step.title}</h2>
-            <div>{step.children}</div>
+            <span className="swiftui-step-label">Step {i + 1}</span>
+            <h2 className="swiftui-step-title">{step.title}</h2>
+            <div className="swiftui-step-body">{step.children}</div>
           </Selectable>
         ))}
       </div>
-      <div className="w-1/2 bg-card">
-        <div className="top-16 sticky overflow-auto max-h-[calc(100vh-16rem)]">
-          <Selection
-            from={steps.map((step) => (
-              <>
-                {step.code ? (
-                  <Code codeblock={step.code} />
-                ) : (
-                  <div className="w-full flex items-center justify-center min-h-[20rem] rounded-lg">
-                    {step.preview ? (
-                      <Image src={step.preview.url} alt={step.preview.alt} />
-                    ) : (
-                      <div className="h-16">No Preview Available</div>
-                    )}
-                  </div>
-                )}
-              </>
-            ))}
-          />
+
+      {/* Sticky preview on the right */}
+      <div className="flex-1 min-w-0">
+        <div className="sticky top-20 max-h-[calc(100vh-6rem)] flex items-start justify-center">
+          <div className="swiftui-preview">
+            <Selection
+              from={steps.map((step) => (
+                <>
+                  {step.code ? (
+                    <Code codeblock={step.code} />
+                  ) : step.preview ? (
+                    <Image src={step.preview.url} alt={step.preview.alt} />
+                  ) : (
+                    <div className="swiftui-preview-empty">
+                      No Preview Available
+                    </div>
+                  )}
+                </>
+              ))}
+            />
+          </div>
         </div>
       </div>
     </SelectionProvider>
@@ -69,7 +72,7 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
     <Pre
       code={highlighted}
       handlers={[tokenTransitions, wordWrap]}
-      className="min-h-[40rem]"
+      className="min-h-[30rem]"
     />
   );
 }
@@ -80,9 +83,9 @@ async function Image({ src, alt }: { src: string; alt: string }) {
   const fullSrc = src.startsWith("/") ? `${basePath}${src}` : src;
   return (
     <ImageZoom
-      width="500"
-      height="300"
-      className="w-full"
+      width="1400"
+      height="900"
+      className="w-full h-auto object-contain"
       src={fullSrc}
       alt={alt}
     />

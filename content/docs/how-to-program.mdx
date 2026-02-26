@@ -1,19 +1,95 @@
 ---
 title: Programming
-description: Programming Basics
-full: false
+description: Choose your programming tool and create your first program
+full: true
 ---
-
 
 import { Scrollycoding } from "@/components/scrollycoding"
 import {Header} from "@/components/header"
 
+<Header>
+Learn how to open the programming interface, pick a programming tool, and understand how robot programs work.
+
+</Header>
+
 <Scrollycoding>
 
-## !!steps Open Broswer
+## !!steps Open the Console
 
-Open a web browser (Chrome, Firefox, Edge, Internet Explorer) and navigate to "192.168.43.1:8080" through the address bar.
+Make sure you are connected to your Control Hub's Wi-Fi (see the previous tutorial). Open a web browser (Chrome, Firefox, or Edge) and type **192.168.43.1:8080** in the address bar, then press Enter.
 
-![!preview Wifi Name](/connecting_to_robot_opening_browser.svg)
+This opens the **Robot Controller Console** — the home screen for programming your robot. You will see a menu bar at the top with options for **Blocks**, **OnBot Java**, and **Manage**.
+
+**Note:** While connected to the Control Hub, your computer will not have internet access. That is normal!
+
+![!preview Robot Controller Console](/connecting_to_robot_opening_browser.svg)
+
+## !!steps Pick a Programming Tool
+
+You have two beginner-friendly options:
+
+**Blocks (Recommended for Beginners)**
+A drag-and-drop editor, similar to Scratch. You snap together code pieces like puzzle blocks. No typing needed! It even has a "Show Java" button so you can peek at the real code behind your blocks.
+
+**OnBot Java**
+A text-based editor for students who already know some Java. You type real code directly in the browser. It gives you more control but requires you to know Java basics.
+
+For this tutorial, we will use **Blocks** — the easiest way to start.
+
+Click the **Blocks** tab in the menu bar to open the Blocks programming page.
+
+![!preview Robot Controller Console](/connecting_to_robot_opening_browser.svg)
+
+## !!steps What is an OpMode?
+
+An **OpMode** is a program that controls your robot. Think of it as a recipe — a set of instructions your robot follows step by step.
+
+There are two types:
+
+**TeleOp** — You drive the robot with a gamepad controller, like a video game. The program reads your joystick and button inputs and moves the robot in real time.
+
+**Autonomous** — The robot drives itself! The program runs for 30 seconds with no human input. This is used during the autonomous period of FTC matches.
+
+![!preview Robot Controller Console](/connecting_to_robot_opening_browser.svg)
+
+## !!steps Create Your First OpMode
+
+In the Blocks editor, click the **Create New OpMode** button.
+
+You will be asked to:
+1. **Name your OpMode** — Give it a simple name like `MyFirstProgram` (no spaces!)
+2. **Choose a template** — Select **BasicOpMode**. This gives you the basic structure you need.
+3. **Choose a type** — Pick **TeleOp** for now, since we want to test by hand.
+
+Click **OK** and the editor will open with some starter code already in place.
+
+![!preview Robot Controller Console](/connecting_to_robot_opening_browser.svg)
+
+## !!steps Understand the Code Structure
+
+Your new OpMode has three important sections, marked by comments (gray text):
+
+**Initialization** — Runs once when you press **Init** on the Driver Hub. This is where you set up your motors and servos to their starting positions.
+
+**Wait for Start** — The program pauses here until you press the **Play** button on the Driver Hub.
+
+**Main Loop** — Everything inside the `while (opModeIsActive)` loop runs over and over until you press **Stop**. This is where most of your code goes — reading sensors, moving motors, and checking the gamepad.
+
+![!preview Robot Controller Console](/connecting_to_robot_opening_browser.svg)
+
+## !!steps Save and Run
+
+When you are done editing, click **Save OpMode** in the top-left corner of the Blocks editor.
+
+To run your program:
+1. Open the **Driver Hub** (or Driver Station app on a phone)
+2. Make sure it is paired to your Control Hub
+3. Select your OpMode from the dropdown list
+4. Press **Init** to initialize
+5. Press the **Play** button to start
+
+Press **Stop** at any time to end the program. Congrats — you just ran your first OpMode!
+
+![!preview Robot Controller Console](/connecting_to_robot_opening_browser.svg)
 
 </Scrollycoding>

@@ -1,19 +1,16 @@
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 
-/**
- * Shared layout configurations
- *
- * you can configure layouts individually from:
- * Home Layout: app/(home)/layout.tsx
- * Docs Layout: app/docs/layout.tsx
- */
 export const baseOptions: BaseLayoutProps = {
   nav: {
-    title: "Next Docs",
+    title: (
+      <span style={{ fontWeight: 600, letterSpacing: "-0.02em" }}>
+        Next Robotics
+      </span>
+    ),
   },
   links: [
     {
-      text: "Documentation",
+      text: "Tutorials",
       url: "/docs",
       active: "nested-url",
     },

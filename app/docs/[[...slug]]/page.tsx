@@ -20,8 +20,19 @@ export default async function Page(props: {
 
   return (
     <DocsPage toc={page.data.toc} full={page.data.full}>
-      <DocsTitle>{page.data.title}</DocsTitle>
-      <DocsDescription>{page.data.description}</DocsDescription>
+      <DocsTitle>
+        <span
+          className="text-3xl font-bold tracking-tight"
+          style={{ color: "var(--apple-text)" }}
+        >
+          {page.data.title}
+        </span>
+      </DocsTitle>
+      <DocsDescription>
+        <span style={{ color: "var(--apple-text-secondary)" }}>
+          {page.data.description}
+        </span>
+      </DocsDescription>
       <DocsBody>
         <MDX components={{ ...defaultMdxComponents, Code }} />
       </DocsBody>

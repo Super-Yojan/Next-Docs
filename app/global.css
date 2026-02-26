@@ -31,6 +31,18 @@
     --ch-24: #8c959f;
     --ch-25: #afb8c133;
     --ch-26: #ffffffe6;
+
+    --apple-bg: #ffffff;
+    --apple-bg-secondary: #f5f5f7;
+    --apple-text: #1d1d1f;
+    --apple-text-secondary: #6e6e73;
+    --apple-blue: #007aff;
+    --apple-blue-dark: #0055d4;
+    --apple-border: #d2d2d7;
+    --apple-card: #ffffff;
+    --apple-card-shadow: rgba(0, 0, 0, 0.04);
+    --apple-hero-from: #1d1d1f;
+    --apple-hero-to: #6e6e73;
   }
   .dark {
     --ch-0: dark;
@@ -60,5 +72,159 @@
     --ch-24: #6e7681;
     --ch-25: #6e768166;
     --ch-26: #0d1117e6;
+
+    --apple-bg: #000000;
+    --apple-bg-secondary: #1c1c1e;
+    --apple-text: #f5f5f7;
+    --apple-text-secondary: #a1a1a6;
+    --apple-blue: #0a84ff;
+    --apple-blue-dark: #409cff;
+    --apple-border: #38383a;
+    --apple-card: #1c1c1e;
+    --apple-card-shadow: rgba(0, 0, 0, 0.3);
+    --apple-hero-from: #f5f5f7;
+    --apple-hero-to: #a1a1a6;
   }
+}
+
+/* Apple-style global overrides */
+body {
+  color: var(--apple-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fumadocs nav bar - Apple style */
+nav.nd-navbar,
+header.nd-navbar {
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+/* Apple-style sidebar */
+aside [data-active="true"] {
+  color: var(--apple-blue) !important;
+  font-weight: 600;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--apple-border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--apple-text-secondary);
+}
+
+/* ==========================================
+   SwiftUI Tutorial-style step layout
+   ========================================== */
+
+/* Step card */
+.swiftui-step {
+  position: relative;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 3rem;
+  border-left: 4px solid transparent;
+  border-radius: 0;
+  background: var(--apple-card);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+.swiftui-step[data-selected="true"] {
+  border-left-color: var(--apple-blue);
+}
+
+/* "Step N" label */
+.swiftui-step-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--apple-text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+/* Step title */
+.swiftui-step-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--apple-text);
+  margin: 0 0 0.75rem 0;
+}
+
+/* Step body text */
+.swiftui-step-body {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--apple-text-secondary);
+}
+.swiftui-step-body p {
+  margin-bottom: 0.75rem;
+}
+.swiftui-step-body p:last-child {
+  margin-bottom: 0;
+}
+.swiftui-step-body strong {
+  color: var(--apple-text);
+  font-weight: 600;
+}
+.swiftui-step-body ol,
+.swiftui-step-body ul {
+  padding-left: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+.swiftui-step-body li {
+  margin-bottom: 0.35rem;
+}
+.swiftui-step-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75rem 0;
+  font-size: 0.9rem;
+}
+.swiftui-step-body th,
+.swiftui-step-body td {
+  text-align: left;
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid var(--apple-border);
+}
+.swiftui-step-body th {
+  color: var(--apple-text);
+  font-weight: 600;
+}
+
+/* Preview panel on the right */
+.swiftui-preview {
+  width: 100%;
+  background: var(--apple-bg-secondary);
+  border: 1px solid var(--apple-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.swiftui-preview-empty {
+  padding: 4rem 2rem;
+  text-align: center;
+  color: var(--apple-text-secondary);
+  font-size: 0.9rem;
+}
+
+/* Code block Apple style */
+.apple-code-block {
+  border-radius: 12px;
+  border: 1px solid var(--apple-border);
+  overflow: hidden;
+}
+.apple-code-block pre {
+  border-radius: 0 !important;
+  border: none !important;
 }

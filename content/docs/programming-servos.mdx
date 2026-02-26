@@ -1,0 +1,93 @@
+---
+title: Programming Servos
+description: Control precise movements with servos
+full: true
+---
+
+import { Scrollycoding } from "@/components/scrollycoding"
+import {Header} from "@/components/header"
+
+<Header>
+Servos are like robot wrists — they do not spin fast like motors, but they move to exact positions. Perfect for opening claws, tilting cameras, or flipping mechanisms.
+
+</Header>
+
+<Scrollycoding>
+
+## !!steps Motors vs Servos
+
+**Motors** spin around and around. They are great for wheels and arms that need to rotate continuously. You control them by setting a **power** level (-1 to 1).
+
+**Servos** move to a specific angle and hold it. They are great for grippers, latches, and anything that needs to be in an exact position. You control them by setting a **position** (0 to 1).
+
+Think of it this way:
+- A motor is like a fan — it just spins.
+- A servo is like a door — it opens to a specific angle and stays there.
+
+![!preview Motor and Servo Wiring](/Control_Hub_Wiring_Reference_Sheet_Motor.png)
+
+## !!steps Find the Servo Block
+
+In the Blocks editor, click on **Actuators** in the left menu, then click **Servo**.
+
+Find the **set position** block — it looks like:
+
+`set test_servo.Position to 0`
+
+Drag this block into the **while loop** of your OpMode.
+
+![!preview Motor and Servo Wiring](/Control_Hub_Wiring_Reference_Sheet_Motor.png)
+
+## !!steps Understanding Servo Position
+
+Servo position is a number between **0** and **1**:
+
+| Position Value | What It Means |
+|---|---|
+| **0** | All the way to one side |
+| **0.5** | Middle position |
+| **1** | All the way to the other side |
+
+When you set a position, the servo moves there and **holds** — even if something tries to push it. That is what makes servos so useful for grippers and latches.
+
+If the servo is already at the position you set, it will not move. That is normal!
+
+![!preview Motor and Servo Wiring](/Control_Hub_Wiring_Reference_Sheet_Motor.png)
+
+## !!steps Set a Starting Position
+
+It is a good idea to set your servo to a known position during **initialization** (the setup section before the main loop).
+
+1. Drag a `set Position` block into the **initialization section** (above `waitForStart`)
+2. Set the value to **0**
+
+This way, every time your program starts, the servo resets to the same position before you press Play. No surprises!
+
+![!preview Motor and Servo Wiring](/Control_Hub_Wiring_Reference_Sheet_Motor.png)
+
+## !!steps Control with Gamepad Buttons
+
+Let us use gamepad buttons to toggle the servo between open and closed:
+
+1. Add an **if/else** block inside the while loop
+2. For the condition, use **gamepad1.A** (this is `true` when the A button is held)
+3. **If A is pressed:** set servo position to **1** (open)
+4. **Else:** set servo position to **0** (closed)
+
+Now pressing A on your gamepad opens the servo, and releasing it closes it back. This is perfect for a simple claw!
+
+![!preview Motor and Servo Wiring](/Control_Hub_Wiring_Reference_Sheet_Motor.png)
+
+## !!steps Test and Adjust
+
+Save your OpMode and run it. Try these experiments:
+
+1. **Change the positions** — try 0.3 and 0.7 instead of 0 and 1 for a smaller range of motion
+2. **Use different buttons** — try gamepad1.B or gamepad1.X instead of A
+3. **Add more servos** — if you have a second servo configured, add another set of position blocks
+
+**Tip:** If your servo buzzes or jitters at a certain position, it might be hitting a physical limit. Try adjusting your position values slightly.
+
+![!preview Motor and Servo Wiring](/Control_Hub_Wiring_Reference_Sheet_Motor.png)
+
+</Scrollycoding>
