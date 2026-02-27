@@ -90,12 +90,6 @@ export default function HomePage() {
             description="Make your robot move by controlling motors with code."
             color="#FF3B30"
           />
-          <TutorialCard
-            href="/docs/programming-servos"
-            title="Programming Servos"
-            description="Control grippers and mechanisms with precise servo positions."
-            color="#5AC8FA"
-          />
         </div>
       </section>
     </main>

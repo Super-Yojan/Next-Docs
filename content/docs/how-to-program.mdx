@@ -24,72 +24,54 @@ This opens the **Robot Controller Console** — the home screen for programming 
 
 ![!preview Robot Controller Console](/connecting_to_robot_opening_browser.svg)
 
-## !!steps Pick a Programming Tool
+## !!steps Open the Blocks Editor
 
-You have two beginner-friendly options:
+Click the **Blocks** tab in the menu bar. You will see the **My OpModes** page — a list of all the programs saved on your robot.
 
-**Blocks (Recommended for Beginners)**
-A drag-and-drop editor, similar to Scratch. You snap together code pieces like puzzle blocks. No typing needed! It even has a "Show Java" button so you can peek at the real code behind your blocks.
+This is your home base for creating, editing, and managing your robot programs. Each row is an OpMode (a program) that you or someone else has created.
 
-**OnBot Java**
-A text-based editor for students who already know some Java. You type real code directly in the browser. It gives you more control but requires you to know Java basics.
+![!preview My OpModes](/FTC%20-%20My%20OpModes.png)
 
-For this tutorial, we will use **Blocks** — the easiest way to start.
+## !!steps Create a New OpMode
 
-Click the **Blocks** tab in the menu bar to open the Blocks programming page.
+Click the **Create New OpMode** button in the top-left corner. A dialog box will appear asking you to set up your new program.
 
-![!preview Robot Controller Console](/connecting_to_robot_opening_browser.svg)
+You will see two fields:
+- **OpMode Name** — where you type the name of your program
+- **Sample** — a dropdown to pick a starter template
 
-## !!steps What is an OpMode?
+![!preview Create New OpMode](/CreateNewOpMode.png)
 
-An **OpMode** is a program that controls your robot. Think of it as a recipe — a set of instructions your robot follows step by step.
+## !!steps Choose a Template
 
-There are two types:
+Click the **Sample** dropdown to see the available templates. Select **BasicOpMode** — this gives you the simplest starting structure with all the sections you need.
 
-**TeleOp** — You drive the robot with a gamepad controller, like a video game. The program reads your joystick and button inputs and moves the robot in real time.
+There are many other templates for more advanced programs, but BasicOpMode is the best place to start.
 
-**Autonomous** — The robot drives itself! The program runs for 30 seconds with no human input. This is used during the autonomous period of FTC matches.
+![!preview Template Options](/OptionsForOpModes.png)
 
-![!preview Robot Controller Console](/connecting_to_robot_opening_browser.svg)
+## !!steps Name Your OpMode
 
-## !!steps Create Your First OpMode
+Type a name for your program in the **OpMode Name** field. For this tutorial, we will use `TwoMotorDrive` since we will be programming two motors.
 
-In the Blocks editor, click the **Create New OpMode** button.
+Keep names simple — use letters and underscores only, no spaces. When you are ready, click **OK** to create the OpMode.
 
-You will be asked to:
-1. **Name your OpMode** — Give it a simple name like `MyFirstProgram` (no spaces!)
-2. **Choose a template** — Select **BasicOpMode**. This gives you the basic structure you need.
-3. **Choose a type** — Pick **TeleOp** for now, since we want to test by hand.
-
-Click **OK** and the editor will open with some starter code already in place.
-
-![!preview Robot Controller Console](/connecting_to_robot_opening_browser.svg)
+![!preview Naming the OpMode](/CreateOpModeInput.png)
 
 ## !!steps Understand the Code Structure
 
-Your new OpMode has three important sections, marked by comments (gray text):
+The editor opens with your new OpMode. On the left you will see the **block categories** (Actuators, Sensors, Logic, etc.) and in the center is your **program workspace**.
 
-**Initialization** — Runs once when you press **Init** on the Driver Hub. This is where you set up your motors and servos to their starting positions.
+Your new OpMode has three important sections:
 
-**Wait for Start** — The program pauses here until you press the **Play** button on the Driver Hub.
+**Initialization** — Runs once when you press **Init** on the Driver Hub. This is where you set up motors and servos.
 
-**Main Loop** — Everything inside the `while (opModeIsActive)` loop runs over and over until you press **Stop**. This is where most of your code goes — reading sensors, moving motors, and checking the gamepad.
+**Wait for Start** — The program pauses here until you press the **Play** button.
 
-![!preview Robot Controller Console](/connecting_to_robot_opening_browser.svg)
+**Main Loop** — Everything inside the `repeat while opModeIsActive` loop runs over and over until you press **Stop**. This is where most of your code goes.
 
-## !!steps Save and Run
+On the right side, you can click **Show Java** to see the real Java code behind your blocks.
 
-When you are done editing, click **Save OpMode** in the top-left corner of the Blocks editor.
-
-To run your program:
-1. Open the **Driver Hub** (or Driver Station app on a phone)
-2. Make sure it is paired to your Control Hub
-3. Select your OpMode from the dropdown list
-4. Press **Init** to initialize
-5. Press the **Play** button to start
-
-Press **Stop** at any time to end the program. Congrats — you just ran your first OpMode!
-
-![!preview Robot Controller Console](/connecting_to_robot_opening_browser.svg)
+![!preview Blocks Editor](/FTC%20-%20TwoMotorDrive.png)
 
 </Scrollycoding>

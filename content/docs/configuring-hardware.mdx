@@ -20,7 +20,7 @@ The Control Hub has many ports, but it does not know what you plugged into each 
 
 Without configuration, your Blocks code will not know which motor or sensor to talk to. You only need to do this once (unless you change your wiring).
 
-![!preview Control Hub Ports](/Control_Hub_Wiring_Reference_Sheet.webp)
+![!preview Device Categories](/rev_config_device_categories.png)
 
 ## !!steps Open Configuration
 
@@ -28,23 +28,30 @@ On your Driver Hub (or Driver Station phone):
 
 1. Tap the **three dots** menu in the top-right corner
 2. Select **Configure Robot**
-3. Tap **New** to create a new configuration
-4. Select **Control Hub Portal** from the USB Devices list
-5. Tap the **Control Hub** to start setting up devices
 
-![!preview Control Hub](/controlhub.png)
+This opens the configuration manager where you can create, edit, and activate hardware configurations.
+
+![!preview Configure Robot Menu](/rev_config_menu.png)
+
+## !!steps Create a New Configuration
+
+Tap **New** to create a new configuration. You will see a list of **USB Devices** connected to your Control Hub.
+
+Select **Control Hub Portal** from the list, then tap **Control Hub** to start setting up the devices plugged into it.
+
+![!preview USB Devices](/rev_config_usb_devices.png)
 
 ## !!steps Configure a Motor
 
 1. Tap the **Motors** section
 2. Find **Port 0** and tap the dropdown
-3. Select your motor type — for example, **REV Robotics Core Hex Motor**
+3. Select your motor type — for example, **Rev Robotics Core Hex Motor**
 4. In the name field, type: `test_motor`
 5. Tap **Done**
 
 **Important:** Names are **case-sensitive**! `test_motor` and `Test_Motor` are treated as two different things. Keep names lowercase with underscores to avoid mistakes.
 
-![!preview Motor Wiring](/Control_Hub_Wiring_Reference_Sheet_Motor.png)
+![!preview Motor Type Selection](/rev_config_motor_type.png)
 
 ## !!steps Configure a Servo
 
@@ -56,7 +63,7 @@ On your Driver Hub (or Driver Station phone):
 
 If you are using a **continuous rotation servo** (one that spins all the way around), select **Continuous Rotation Servo** instead.
 
-![!preview Motor and Servo Wiring](/Control_Hub_Wiring_Reference_Sheet_Motor.png)
+![!preview Servo Type Selection](/rev_config_servo_type.png)
 
 ## !!steps Configure a Touch Sensor
 
@@ -66,7 +73,7 @@ If you are using a **continuous rotation servo** (one that spins all the way aro
 4. In the name field, type: `test_touch`
 5. Tap **Done**
 
-![!preview Sensor Wiring](/Control_Hub_Wiring_Reference_Sheet_Sensors.png)
+![!preview Digital Device Type Selection](/rev_config_digital_type.png)
 
 ## !!steps Configure a Color Sensor
 
@@ -78,7 +85,7 @@ If you are using a **continuous rotation servo** (one that spins all the way aro
 
 Multiple I2C sensors can share the same bus as long as they have different addresses (the Color Sensor and Distance Sensor have different default addresses, so they work together).
 
-![!preview Sensor Wiring](/Control_Hub_Wiring_Reference_Sheet_Sensors.png)
+![!preview I2C Device Type Selection](/rev_config_i2c_type.png)
 
 ## !!steps Save and Activate
 
@@ -89,6 +96,6 @@ Multiple I2C sensors can share the same bus as long as they have different addre
 
 The Robot Controller will restart automatically. Your configuration is now **active** — the names you created (like `test_motor`) will appear as options in your Blocks code!
 
-![!preview Control Hub](/controlhub.png)
+![!preview Active Configuration](/rev_config_active.png)
 
 </Scrollycoding>

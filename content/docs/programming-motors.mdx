@@ -8,7 +8,7 @@ import { Scrollycoding } from "@/components/scrollycoding"
 import {Header} from "@/components/header"
 
 <Header>
-Now that your hardware is configured, it is time to make something move! In this tutorial, you will learn how to control a motor using Blocks.
+Now that your hardware is configured, it is time to make something move! In this tutorial, you will build a TwoMotorDrive program step by step using Blocks.
 
 </Header>
 
@@ -18,74 +18,92 @@ Now that your hardware is configured, it is time to make something move! In this
 
 Open the Robot Controller Console (**192.168.43.1:8080**) in your browser and click the **Blocks** tab.
 
-Find the OpMode you created earlier (like `MyFirstProgram`) and click it to open the editor. If you have not created one yet, go back to the **Programming** tutorial first.
+Find the OpMode you created earlier (like `TwoMotorDrive`) and click it to open the editor. If you have not created one yet, go back to the **Programming** tutorial first.
 
-![!preview Robot Controller Console](/connecting_to_robot_opening_browser.svg)
+![!preview My OpModes](/FTC%20-%20My%20OpModes.png)
 
-## !!steps Find the Motor Block
+## !!steps Find the Motor Blocks
 
-On the left side of the Blocks editor, you will see categories of blocks. Click on **Actuators**, then click **DcMotor**.
+On the left side of the Blocks editor, click on **Actuators**, then click **DcMotor**. This opens a menu full of motor-related blocks.
 
-This opens a menu full of motor-related blocks. The one you need is the **set power** block — it looks like:
+You will need several blocks for setting up your motors:
+- **set Mode** — tells the motor how to run (use `RUN_WITHOUT_ENCODER` for basic driving)
+- **set Power** — controls how fast the motor spins (-1 to 1)
+- **set Direction** — controls which way the motor spins
 
-`set test_motor.Power to 1`
+You can see all the available motor blocks listed in the sidebar.
 
-Drag this block into your code and drop it inside the **while loop** (the repeating section of your program).
+![!preview Motor Blocks](/FTC%20-%20TwoMotorDriveActuatorsSetup.png)
 
-![!preview Motor Wiring](/Control_Hub_Wiring_Reference_Sheet_Motor.png)
+## !!steps Initialize Your Motors
 
-## !!steps Understanding Motor Power
+Drag motor blocks into the **initialization section** (above `waitForStart`) to set up both motors before the program starts.
 
-Motor power is a number between **-1** and **1**:
+For each motor (Left and Right), add a **set Mode** block and set it to `RUN_WITHOUT_ENCODER`. This is the simplest mode — you just set a power level and the motor spins.
 
-| Power Value | What It Does |
-|---|---|
-| **1** | Full speed forward (100%) |
-| **0.5** | Half speed forward (50%) |
-| **0** | Stop |
-| **-0.5** | Half speed backward (50%) |
-| **-1** | Full speed backward (100%) |
+Your initialization should look like:
+- `set Left.Mode to RUN_WITHOUT_ENCODER`
+- `set Right.Mode to RUN_WITHOUT_ENCODER`
 
-Think of it like a volume dial — 1 is max volume, 0 is mute, and negative numbers play the music in reverse!
+![!preview Motor Initialization](/FTC%20-%20TwoMotorDriveMotorInitialization.png)
 
-![!preview Motor Wiring](/Control_Hub_Wiring_Reference_Sheet_Motor.png)
+## !!steps Create a Variable
 
-## !!steps Test Different Speeds
+To store the gamepad joystick values, you need to create **variables**. Click on **Variables** in the left sidebar, then click the **Create variable** button at the top.
 
-Try changing the power number and running your OpMode each time:
+Variables are like labeled boxes that hold a value. We will use them to store the joystick input before sending it to the motors.
 
-1. Set power to **1** — the motor spins at full speed
-2. Set power to **0.3** — the motor spins slowly
-3. Set power to **-1** — the motor spins the opposite direction
-4. Set power to **0** — the motor stops
+![!preview Create Variable](/FTC%20-%20TwoMotorDriveCreateVariable.png)
 
-After each change, click **Save OpMode**, then run the program from your Driver Hub to see the result.
+## !!steps Name the Variable
 
-![!preview Motor Wiring](/Control_Hub_Wiring_Reference_Sheet_Motor.png)
+A dialog will pop up asking for the variable name. Type `LeftActuation` and click **OK**.
 
-## !!steps Control with a Gamepad
+This variable will hold the calculated power for the left motor based on gamepad input. You will create a second variable called `RightActuation` for the right motor using the same steps.
 
-Hardcoding a power number is not very useful for driving. Let us use the **gamepad joystick** instead!
+![!preview Variable Name Dialog](/FTCVariableCreation.png)
 
-1. Delete the number block attached to `set Power`
-2. Go to **Gamepad** in the block categories
-3. Drag out the **gamepad1.LeftStickY** block
-4. Attach it to `set Power`
+## !!steps See the Variable Blocks
 
-Now the motor speed is controlled by your left joystick. Push the stick forward for full power, pull it back for reverse, and center it to stop.
+After creating your variable, you will see new blocks appear in the **Variables** category:
+- **set LeftActuation to** — stores a value in the variable
+- **change LeftActuation by** — adds to the current value
+- **LeftActuation** — a block that reads the current value
 
-**Tip:** Connect your gamepad to the Driver Hub by pressing **Options + A** at the same time.
+You will use the **set** block inside your main loop to store the joystick value each time the loop runs, and the **LeftActuation** block to send that value to the motor.
 
-![!preview Motor Wiring](/Control_Hub_Wiring_Reference_Sheet_Motor.png)
+![!preview Variable Blocks](/VariableCreated.png)
 
-## !!steps Reverse the Direction
+## !!steps Duplicate Blocks
 
-If pushing the joystick forward makes the motor spin the wrong way, you can flip the direction. The joystick gives **negative** values when pushed forward and **positive** when pulled back, which can feel backwards.
+Instead of rebuilding everything from scratch for the right motor, you can **duplicate** blocks. Right-click on a block (or long-press on a touchscreen) to see a context menu.
 
-To fix it: wrap the gamepad value in a **negate** (minus) math block, or add a `set Direction` block before the loop and set it to **REVERSE**.
+Click **Duplicate** to make a copy of the block. Then change the motor name from `Left` to `Right`. This saves a lot of time when setting up similar blocks for multiple motors.
 
-Save your OpMode and test again — now forward on the joystick should mean forward on the motor!
+![!preview Duplicate Option](/OptionToDuplicate.png)
 
-![!preview Motor Wiring](/Control_Hub_Wiring_Reference_Sheet_Motor.png)
+## !!steps Add Gamepad Control
+
+Now let us connect the gamepad joysticks to your motors. Inside the **main loop**, use `set LeftActuation to` and attach gamepad blocks.
+
+Go to **Gamepad** in the block categories and drag out joystick blocks. For arcade-style driving, combine **LeftStickY** (forward/backward) with **RightStickX** (turning):
+- `LeftActuation = gamepad2.LeftStickY - gamepad2.RightStickX`
+- `RightActuation = gamepad2.LeftStickY + gamepad2.RightStickX`
+
+Then set each motor's power using the variable multiplied by a speed factor (like 0.4 for 40% max speed).
+
+![!preview Gamepad Control](/FTC%20-%20TwoMotorDrive%20Game%20Pad.png)
+
+## !!steps Final Code
+
+Here is the complete TwoMotorDrive program. In the **initialization section**, both motors are set to `RUN_WITHOUT_ENCODER` mode. In the **main loop**:
+
+1. Read the gamepad joystick values into `LeftActuation` and `RightActuation`
+2. Multiply each by 0.4 to limit the speed
+3. Set each motor's power to its corresponding actuation value
+
+Save your OpMode and run it from the Driver Hub. Push the left stick forward to drive, and the right stick left/right to turn!
+
+![!preview Complete Program](/FinalCode.png)
 
 </Scrollycoding>
